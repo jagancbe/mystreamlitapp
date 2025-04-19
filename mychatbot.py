@@ -2,6 +2,24 @@ import streamlit as st
 import openai
 import os
 
+# Load API key from environment variables
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+
+# Rest of your Streamlit code...
+def generate_response(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7
+    )
+    return response.choices[0].message["content"]
+
+# Your Streamlit UI code...
+
+import streamlit as st
+import openai
+import os
+
 # Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
